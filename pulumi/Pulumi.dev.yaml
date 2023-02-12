@@ -1,0 +1,12 @@
+config:
+  aws:region: us-east-1
+  aws:accessKey: mock_access_key
+  aws:secretKey: mock_secret_key
+  aws:skipCredentialsValidation: true
+  aws:skipRequestingAccountId: true
+  aws:defaultTags:
+    tags:
+      Env: Dev
+      Owner: PulumiProviders
+  aws:endpoints:
+    - dynamodb: http://localhost:4566

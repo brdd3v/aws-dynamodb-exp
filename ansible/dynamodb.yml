@@ -1,0 +1,51 @@
+---
+- hosts: localhost
+  gather_facts: False
+  module_defaults:
+    community.aws.dynamodb_table:
+      aws_access_key: "mock_access_key"
+      aws_secret_key: "mock_secret_key"
+      region: "us-east-1"
+      endpoint_url: "http://localhost:4566"
+      billing_mode: PROVISIONED
+      read_capacity: 10
+      write_capacity: 10
+      tags:
+        Env: Dev
+        Owner: Ansible
+
+  tasks:
+    - name: Create dynamodb table 'ProductCatalog'
+      community.aws.dynamodb_table:
+        name: ProductCatalog
+        hash_key_name: Id
+        hash_key_type: NUMBER
+
+    - name: Create dynamodb table 'Forum'
+      community.aws.dynamodb_table:
+        name: Forum
+        hash_key_name: Name
+        hash_key_type: STRING
+
+    - name: Create dynamodb table 'Thread'
+      community.aws.dynamodb_table:
+        name: Thread
+        hash_key_name: ForumName
+        hash_key_type: STRING
+        range_key_name: Subject
+        range_key_type: STRING
+
+    - name: Create dynamodb table 'Reply'
+      community.aws.dynamodb_table:
+        name: Reply
+        hash_key_name: Id
+        hash_key_type: STRING
+        range_key_name: ReplyDateTime
+        range_key_type: STRING
+        indexes:
+          - name: PostedBy-Message-Index
+            type: global_all
+            hash_key_name: PostedBy
+            range_key_name: Message
+            read_capacity: 10
+            write_capacity: 10

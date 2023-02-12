@@ -1,0 +1,6 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name="dynamodb-exp"
+region="us-east-1"
+

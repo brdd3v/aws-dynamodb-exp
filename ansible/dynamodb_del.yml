@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  gather_facts: False
+  module_defaults:
+    community.aws.dynamodb_table:
+      aws_access_key: "mock_access_key"
+      aws_secret_key: "mock_secret_key"
+      region: "us-east-1"
+      endpoint_url: "http://localhost:4566"
+
+  tasks:
+    - name: Delete dynamodb table 'ProductCatalog'
+      community.aws.dynamodb_table:
+        name: ProductCatalog
+        state: absent
+
+    - name: Delete dynamodb table 'Forum'
+      community.aws.dynamodb_table:
+        name: Forum
+        state: absent
+
+    - name: Delete dynamodb table 'Thread'
+      community.aws.dynamodb_table:
+        name: Thread
+        state: absent
+
+    - name: Delete dynamodb table 'Reply'
+      community.aws.dynamodb_table:
+        name: Reply
+        state: absent

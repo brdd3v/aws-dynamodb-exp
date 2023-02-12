@@ -1,0 +1,138 @@
+{
+    "Tables": [
+    {
+        "TableName": "ProductCatalog",
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "Id",
+                "AttributeType": "N"
+            }
+        ],
+        "KeySchema": [
+            {
+                "AttributeName": "Id",
+                "KeyType": "HASH"
+            }
+        ],
+        "TableStatus": "ACTIVE",
+        "ProvisionedThroughput": {
+            "ReadCapacityUnits": 10,
+            "WriteCapacityUnits": 10
+        },
+        "ItemCount": 8
+    },
+
+    {
+        "TableName": "Forum",
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "Name",
+                "AttributeType": "S"
+            }
+        ],
+        "KeySchema": [
+            {
+                "AttributeName": "Name",
+                "KeyType": "HASH"
+            }
+        ],
+        "TableStatus": "ACTIVE",
+        "ProvisionedThroughput": {
+            "ReadCapacityUnits": 10,
+            "WriteCapacityUnits": 10
+        },
+        "ItemCount": 2
+    },
+
+    {
+        "TableName": "Thread",
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "ForumName",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "Subject",
+                "AttributeType": "S"
+            }
+        ],
+        "KeySchema": [
+            {
+                "AttributeName": "ForumName",
+                "KeyType": "HASH"
+            },
+            {
+                "AttributeName": "Subject",
+                "KeyType": "RANGE"
+            }
+        ],
+        "TableStatus": "ACTIVE",
+        "ProvisionedThroughput": {
+            "ReadCapacityUnits": 10,
+            "WriteCapacityUnits": 10
+        },
+        "ItemCount": 3
+    },
+
+    {
+        "TableName": "Reply",
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "Id",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "ReplyDateTime",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "PostedBy",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "Message",
+                "AttributeType": "S"
+            }
+        ],
+        "KeySchema": [
+            {
+                "AttributeName": "Id",
+                "KeyType": "HASH"
+            },
+            {
+                "AttributeName": "ReplyDateTime",
+                "KeyType": "RANGE"
+            }
+        ],
+        "TableStatus": "ACTIVE",
+        "ProvisionedThroughput": {
+            "ReadCapacityUnits": 10,
+            "WriteCapacityUnits": 10
+        },
+        "ItemCount": 4,
+        "GlobalSecondaryIndexes": [
+            {
+                "IndexName": "PostedBy-Message-Index",
+                "KeySchema": [
+                    {
+                        "AttributeName": "PostedBy",
+                        "KeyType": "HASH"
+                    },
+                    {
+                        "AttributeName": "Message",
+                        "KeyType": "RANGE"
+                    }
+                ],
+                "Projection": {
+                    "ProjectionType": "ALL"
+                },
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 10,
+                    "WriteCapacityUnits": 10
+                }
+            }
+        ]
+    }
+    ]
+}
+

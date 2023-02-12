@@ -1,0 +1,132 @@
+service: dynamodb-exp
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: python3.8
+
+plugins:
+  - serverless-localstack
+  - serverless-dynamodb-local
+
+custom:
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    edgePort: 4566
+  dynamodb:
+    stages:
+      - dev
+    start:
+      docker: true
+      port: 8000
+      noStart: true
+
+
+resources:
+  Resources:
+    # Table 'ProductCatalog'
+    ProductCatalog:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: "ProductCatalog"
+        AttributeDefinitions:
+          - AttributeName: "Id"
+            AttributeType: "N"
+        KeySchema:
+          - AttributeName: "Id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        Tags:
+          - Key: Env
+            Value: Dev
+          - Key: Owner
+            Value: Serverless
+
+    # Table 'Forum'
+    Forum:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: "Forum"
+        AttributeDefinitions:
+          - AttributeName: "Name"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "Name"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        Tags:
+          - Key: Env
+            Value: Dev
+          - Key: Owner
+            Value: Serverless
+
+    # Table 'Thread'
+    Thread:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: "Thread"
+        AttributeDefinitions:
+          - AttributeName: "ForumName"
+            AttributeType: "S"
+          - AttributeName: "Subject"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "ForumName"
+            KeyType: "HASH"
+          - AttributeName: "Subject"
+            KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        Tags:
+          - Key: Env
+            Value: Dev
+          - Key: Owner
+            Value: Serverless
+
+    # Table 'Reply'
+    Reply:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: "Reply"
+        AttributeDefinitions:
+          - AttributeName: "Id"
+            AttributeType: "S"
+          - AttributeName: "ReplyDateTime"
+            AttributeType: "S"
+          - AttributeName: "PostedBy"
+            AttributeType: "S"
+          - AttributeName: "Message"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "Id"
+            KeyType: "HASH"
+          - AttributeName: "ReplyDateTime"
+            KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        GlobalSecondaryIndexes:
+          - IndexName: "PostedBy-Message-Index"
+            KeySchema:
+              - AttributeName: "PostedBy"
+                KeyType: "HASH"
+              - AttributeName: "Message"
+                KeyType: "RANGE"
+            Projection:
+              ProjectionType: "ALL"
+            ProvisionedThroughput:
+              ReadCapacityUnits: 10
+              WriteCapacityUnits: 10
+        Tags:
+          - Key: Env
+            Value: Dev
+          - Key: Owner
+            Value: Serverless
+
