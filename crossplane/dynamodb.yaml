@@ -1,0 +1,123 @@
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: productcatalog
+spec:
+  forProvider:
+    region: us-east-1
+    billingMode: PROVISIONED
+    provisionedThroughput:
+      readCapacityUnits: 10
+      writeCapacityUnits: 10
+    attributeDefinitions:
+      - attributeName: Id
+        attributeType: 'N'
+    keySchema:
+      - attributeName: Id
+        keyType: HASH
+    tags:
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
+  providerConfigRef:
+    name: provider-config-aws
+---
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: forum
+spec:
+  forProvider:
+    region: us-east-1
+    billingMode: PROVISIONED
+    provisionedThroughput:
+      readCapacityUnits: 10
+      writeCapacityUnits: 10
+    attributeDefinitions:
+      - attributeName: Name
+        attributeType: 'S'
+    keySchema:
+      - attributeName: Name
+        keyType: HASH
+    tags:
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
+  providerConfigRef:
+    name: provider-config-aws
+---
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: thread
+spec:
+  forProvider:
+    region: us-east-1
+    billingMode: PROVISIONED
+    provisionedThroughput:
+      readCapacityUnits: 10
+      writeCapacityUnits: 10
+    attributeDefinitions:
+      - attributeName: ForumName
+        attributeType: 'S'
+      - attributeName: Subject
+        attributeType: 'S'
+    keySchema:
+      - attributeName: ForumName
+        keyType: HASH
+      - attributeName: Subject
+        keyType: RANGE
+    tags:
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
+  providerConfigRef:
+    name: provider-config-aws
+---
+apiVersion: dynamodb.aws.crossplane.io/v1alpha1
+kind: Table
+metadata:
+  name: reply
+spec:
+  forProvider:
+    region: us-east-1
+    billingMode: PROVISIONED
+    provisionedThroughput:
+      readCapacityUnits: 10
+      writeCapacityUnits: 10
+    attributeDefinitions:
+      - attributeName: Id
+        attributeType: 'S'
+      - attributeName: ReplyDateTime
+        attributeType: 'S'
+      - attributeName: PostedBy
+        attributeType: 'S'
+      - attributeName: Message
+        attributeType: 'S'
+    keySchema:
+      - attributeName: Id
+        keyType: HASH
+      - attributeName: ReplyDateTime
+        keyType: RANGE
+    globalSecondaryIndexes:
+      - indexName: PostedBy-Message-Index
+        keySchema:
+          - attributeName: PostedBy
+            keyType: HASH
+          - attributeName: Message
+            keyType: RANGE
+        projection:
+          projectionType: ALL
+        provisionedThroughput:
+          readCapacityUnits: 10
+          writeCapacityUnits: 10
+    tags:
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
+  providerConfigRef:
+    name: provider-config-aws

@@ -1,0 +1,2 @@
+awscli==1.22.59
+awscli-local==0.20

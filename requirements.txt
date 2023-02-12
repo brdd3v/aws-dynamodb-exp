@@ -1,0 +1,39 @@
+# Env (LocalStack)
+localstack==1.4.0
+
+# Boto3, Ansible, Testing, Data
+boto3==1.24.56
+
+# Testing
+pytest==7.1.1
+deepdiff==5.8.0
+
+# Bash (AWS CLI), CloudFormation (AWS CLI)
+awscli==1.22.59
+# AWS CLI (LocalStack)
+awscli-local==0.20
+
+# AWS SAM
+aws-sam-cli==1.55.0
+# AWS SAM (LocalStack)
+aws-sam-cli-local==1.67.0
+
+# AWS CDK
+aws-cdk-lib==2.69.0
+constructs>=10.0.0,<11.0.0
+
+# Absible
+ansible==8.5.0
+ansible-core==2.15.9
+
+# CDKTF
+cdktf~=0.15.5
+cdktf-cdktf-provider-aws~=12.0.10
+
+# Pulumi
+pulumi>=3.0.0,<4.0.0
+pulumi-aws>=5.0.0,<6.0.0
+
+# Misc
+troposphere==4.3.2
+
