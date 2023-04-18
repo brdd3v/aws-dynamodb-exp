@@ -9,22 +9,13 @@
       endpoint_url: "http://localhost:4566"
 
   tasks:
-    - name: Delete dynamodb table 'ProductCatalog'
+    - name: Delete dynamodb tables
       community.aws.dynamodb_table:
-        name: ProductCatalog
+        name: "{{ item }}"
         state: absent
+      loop:
+        - ProductCatalog
+        - Forum
+        - Thread
+        - Reply
 
-    - name: Delete dynamodb table 'Forum'
-      community.aws.dynamodb_table:
-        name: Forum
-        state: absent
-
-    - name: Delete dynamodb table 'Thread'
-      community.aws.dynamodb_table:
-        name: Thread
-        state: absent
-
-    - name: Delete dynamodb table 'Reply'
-      community.aws.dynamodb_table:
-        name: Reply
-        state: absent
