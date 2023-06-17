@@ -1,4 +1,4 @@
-## Creating tables in DynamoDB using Boto3, Terraform, Pulumi, Ansible, Bash (AWS CLI), CloudFormation, SAM, CDK, CDKTF, Serverless
+## Creating tables in DynamoDB using ...
 
 Example tables and sample data can be found [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SampleData.html) (This sample data is also saved in the [data](/data/) folder).
 
@@ -18,6 +18,7 @@ Testing was carried out on the AWS account, the [local version](https://docs.aws
 | CloudFormation | :heavy_check_mark: | :wavy_dash: <sup>3</sup> | :x:          |
 | SAM            | :heavy_check_mark: | :wavy_dash: <sup>3</sup> | :x:          |
 | CDK            | :heavy_check_mark: | :wavy_dash: <sup>3</sup> | :x:          |
+| Chef           | :wavy_dash: <sup>5</sup> | :x:                | :x:          |
 
 
 
@@ -27,4 +28,5 @@ Testing was carried out on the AWS account, the [local version](https://docs.aws
 2. The current version of DynamoDB Local does not support tagging.
 3. The current community version of LocalStack does not completely support all the features of [CloudFormation](https://docs.localstack.cloud/user-guide/aws/cloudformation/).
 4. Plugin for working with DynamoDB Local supports migration (creation of tables), but, apparently, not removal.
+5. There are restrictions (the possibility of deleting tables or adding tags is not found).
 
