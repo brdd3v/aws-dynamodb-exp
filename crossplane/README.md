@@ -3,6 +3,7 @@
 More information about the resource can be found [here](https://doc.crds.dev/github.com/crossplane/provider-aws/dynamodb.aws.crossplane.io/Table/v1alpha1@v0.41.1).
 
 
+
 ### Install
 
 Install the Crossplane Helm chart:
@@ -27,6 +28,8 @@ Create a ProviderConfig:
 kubectl apply -f provider-config.yaml
 ```
 
+More information about ProviderConfig can be found [here](https://doc.crds.dev/github.com/crossplane/provider-aws/aws.crossplane.io/ProviderConfig/v1beta1@v0.41.1).
+
 
 ### Usage
 
@@ -40,3 +43,9 @@ To delete tables:
 ```
 kubectl delete -f dynamodb.yaml
 ```
+
+### Notes
+
+For testing in LocalStack, [Helm chart](https://github.com/localstack/helm-charts) is needed.
+
+You can also consider [this source](https://alvsanand.github.io/apify-your-infra-with-crossplane/) as an example of using LocalStack and Crossplane.

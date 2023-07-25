@@ -19,14 +19,16 @@ Testing was carried out on the AWS account, the [local version](https://docs.aws
 | SAM            | :heavy_check_mark: | :wavy_dash: <sup>3</sup> | :x:          |
 | CDK            | :heavy_check_mark: | :wavy_dash: <sup>3</sup> | :x:          |
 | Chef           | :wavy_dash: <sup>5</sup> | :x:                | :x:          |
+| Crossplane     | :wavy_dash: <sup>6</sup> | :wavy_dash: <sup>6</sup>  | NT <sup>7</sup>   |
 
 
 
 #### Footnotes
 
-1. Files in this repository are configured to work with LocalStack by default.
+1. Most options in this repository are configured to work with LocalStack by default.
 2. The current version of DynamoDB Local does not support tagging.
 3. The current community version of LocalStack does not completely support all the features of [CloudFormation](https://docs.localstack.cloud/user-guide/aws/cloudformation/).
 4. Plugin for working with DynamoDB Local supports migration (creation of tables), but, apparently, not removal.
 5. There are restrictions (the possibility of deleting tables or adding tags is not found).
-
+6. There are small restrictions, for example, in choosing a name for the resource.
+7. Not Tested.

@@ -9,3 +9,7 @@ spec:
       namespace: crossplane-system
       name: aws-secret
       key: creds
+  # endpoint:
+  #   url:
+  #     type: Static
+  #     static: http://localstack.awslocal.svc.cluster.local:4566
