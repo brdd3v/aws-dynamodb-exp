@@ -16,8 +16,10 @@ spec:
       - attributeName: Id
         keyType: HASH
     tags:
-      - key: env
-        value: dev
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
   providerConfigRef:
     name: provider-config-aws
 ---
@@ -39,8 +41,10 @@ spec:
       - attributeName: Name
         keyType: HASH
     tags:
-      - key: env
-        value: dev
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
   providerConfigRef:
     name: provider-config-aws
 ---
@@ -66,8 +70,10 @@ spec:
       - attributeName: Subject
         keyType: RANGE
     tags:
-      - key: env
-        value: dev
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
   providerConfigRef:
     name: provider-config-aws
 ---
@@ -109,7 +115,9 @@ spec:
           readCapacityUnits: 10
           writeCapacityUnits: 10
     tags:
-      - key: env
-        value: dev
+      - key: Env
+        value: Dev
+      - key: Owner
+        value: CrossplaneProviders
   providerConfigRef:
     name: provider-config-aws
