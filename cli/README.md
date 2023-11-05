@@ -1,4 +1,4 @@
-## Bash (using [AWS CLI](https://aws.amazon.com/cli/))
+## [AWS CLI](https://aws.amazon.com/cli/)
 
 More information about the commands can be found [here](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/index.html) and usage examples [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.CLI.html).
 

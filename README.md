@@ -8,7 +8,7 @@ Testing was carried out on the AWS account, the [local version](https://docs.aws
 
 |                | AWS Account        | LocalStack         | DynamoDB Local     |
 | -------------- | ------------------ | ------------------ | ------------------ |
-| Bash (AWS CLI) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| AWS CLI        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | Boto3          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | Terraform      | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | CDKTF          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
